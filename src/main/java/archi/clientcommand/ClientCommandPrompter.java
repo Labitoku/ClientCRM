@@ -1,8 +1,10 @@
-package archi.client;
+package archi.clientcommand;
+
+import archi.clientqueries.ClientQuery;
 
 public class ClientCommandPrompter
 {
-    static String getPrompt(ClientCommand cmd, ClientQuery query)
+    public static String getPrompt(ClientCommand cmd, ClientQuery query)
     {
         String prompt = "";
         switch(cmd)

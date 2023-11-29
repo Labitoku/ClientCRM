@@ -1,4 +1,10 @@
-package archi.client;
+package archi.clientcrm;
+import archi.clientcommand.ClientCommand;
+import archi.clientcommand.ClientCommandPrompter;
+import archi.clientqueries.ClientQuery;
+import archi.clientqueries.QueryType;
+import archi.clienthttp.ClientHttp;
+
 import java.util.Scanner;
 
 public class ClientCRM {
@@ -10,6 +16,8 @@ public class ClientCRM {
 
         Scanner clientScanner = new Scanner(System.in);
         System.out.println("Bienvenue dans ClientCRMinho. Veuillez entrer une requête pour le CRM. Pour accéder à l'aide, tapez '-h', ou 'help'");
+
+        ClientHttp http;
 
         while(clientCommand != ClientCommand.QUIT)
         {
@@ -66,7 +74,7 @@ public class ClientCRM {
                     queryContent += strCommandSplit[i] + " ";
                 }
                 cq = new ClientQuery(type, queryContent);
-                cq.displayQuery();
+                cq.execute();
             }
             System.out.println(ClientCommandPrompter.getPrompt(clientCommand, cq));
         }

@@ -1,4 +1,4 @@
-package archi.client;
+package archi.clientqueries;
 
 public enum QueryType {
     NONE {

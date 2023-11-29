@@ -1,4 +1,4 @@
-package archi.client;
+package archi.clientcommand;
 
 public enum ClientCommand {
     NONE,

@@ -1,4 +1,4 @@
-package archi.client;
+package archi.clientqueries;
 
 public class ClientQuery
 {
@@ -14,5 +14,10 @@ public class ClientQuery
     public void displayQuery()
     {
         System.out.println(type.toString() + " : " + queryContent);
+    }
+
+    public void execute()
+    {
+
     }
 }
