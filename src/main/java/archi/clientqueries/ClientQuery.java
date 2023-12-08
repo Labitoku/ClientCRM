@@ -1,23 +1,28 @@
 package archi.clientqueries;
 
+import archi.clienthttp.HttpClientCRM;
+
+import java.util.ArrayList;
+
 public class ClientQuery
 {
-    QueryType type;
+    QueryType query;
     String queryContent;
+    TypeCRM crm;
 
     public ClientQuery(QueryType t, String qc)
     {
-        type = t;
+        query = t;
         queryContent = qc;
+        crm = TypeCRM.SALESFORCE;
     }
 
-    public void displayQuery()
-    {
-        System.out.println(type.toString() + " : " + queryContent);
-    }
 
     public void execute()
     {
+        HttpClientCRM http = new HttpClientCRM(crm.toString() + query.toString());
+        //ArrayList<String> clients = http.getUserInfo(queryContent);
+        ArrayList<String> clients = http.getAllUsersInfo();
 
     }
 }

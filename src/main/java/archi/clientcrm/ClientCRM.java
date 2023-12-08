@@ -3,7 +3,7 @@ import archi.clientcommand.ClientCommand;
 import archi.clientcommand.ClientCommandPrompter;
 import archi.clientqueries.ClientQuery;
 import archi.clientqueries.QueryType;
-import archi.clienthttp.ClientHttp;
+import archi.clienthttp.HttpClientCRM;
 
 import java.util.Scanner;
 
@@ -17,7 +17,7 @@ public class ClientCRM {
         Scanner clientScanner = new Scanner(System.in);
         System.out.println("Bienvenue dans ClientCRMinho. Veuillez entrer une requête pour le CRM. Pour accéder à l'aide, tapez '-h', ou 'help'");
 
-        ClientHttp http;
+        HttpClientCRM http;
 
         while(clientCommand != ClientCommand.QUIT)
         {
@@ -26,6 +26,9 @@ public class ClientCRM {
 
             String[] strCommandSplit = strCommand.split(" ");
             ClientQuery cq = null;
+
+            QueryType type = QueryType.NONE;
+            String queryContent = "";
             switch(strCommandSplit[0])
             {
                 case "help":
@@ -36,46 +39,22 @@ public class ClientCRM {
                 case "-q":
                     clientCommand = ClientCommand.QUIT;
                     break;
-                case "search":
-                case "-s":
-                    clientCommand = ClientCommand.SEARCH_FOR_CLIENT;
+                case "select":
+                    type = QueryType.SELECT;
                     break;
-                case "search-all":
-                case "-sa":
-                    clientCommand = ClientCommand.SEARCH_FOR_ALL_CLIENTS;
+                case "add":
+                    type = QueryType.ADD;
                     break;
-                case "search-salesforce":
-                case "-ss":
-                    clientCommand = ClientCommand.SEARCH_FOR_SALESFORCE_CLIENTS;
-                    break;
-                case "search-internal":
-                case "-si":
-                    clientCommand = ClientCommand.SEARCH_FOR_INTERNAL_CLIENTS;
+                case "delete":
+                    type = QueryType.DELETE;
                     break;
             }
-            if(strCommandSplit.length >= 3)
+            if(type != QueryType.NONE)
             {
-                QueryType type = QueryType.NONE;
-                String queryContent = "";
-                switch(strCommandSplit[1].toLowerCase())
-                {
-                    case "select":
-                        type = QueryType.SELECT;
-                        break;
-                    case "add":
-                        type = QueryType.ADD;
-                        break;
-                    case "delete":
-                        type = QueryType.DELETE;
-                        break;
-                }
-                for(int i = 2 ; i < strCommandSplit.length ; i++)
-                {
-                    queryContent += strCommandSplit[i] + " ";
-                }
                 cq = new ClientQuery(type, queryContent);
                 cq.execute();
             }
+
             System.out.println(ClientCommandPrompter.getPrompt(clientCommand, cq));
         }
     }

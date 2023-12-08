@@ -10,7 +10,7 @@ public enum QueryType {
     SELECT {
         @Override
         public String toString() {
-            return "SELECT";
+            return "api/salesforce/allUsers";
         }
     },
     ADD {

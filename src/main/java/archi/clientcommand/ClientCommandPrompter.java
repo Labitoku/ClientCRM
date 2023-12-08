@@ -17,13 +17,13 @@ public class ClientCommandPrompter
                 break;
             case QUIT:
                 break;
-            case SEARCH_FOR_CLIENT:
+            case SELECT_CLIENT:
                 break;
-            case SEARCH_FOR_ALL_CLIENTS:
+            case SELECT_ALL_CLIENTS:
                 break;
-            case SEARCH_FOR_INTERNAL_CLIENTS:
+            case SELECT_INTERNAL_CLIENTS:
                 break;
-            case SEARCH_FOR_SALESFORCE_CLIENTS:
+            case SELECT_SALESFORCE_CLIENTS:
                 break;
             default:
                 prompt = defaultIncorrectCommandPrompt();
@@ -43,10 +43,10 @@ public class ClientCommandPrompter
                 "des requêtes pour accéder aux clients existant dans le CRM." +
                 "\t\t'-h' ou 'help' : permet d'afficher ce prompt.\n" +
                 "\t\t'-q' ou 'quit' : permet de quitter ClientCRMinho\n" +
-                "\t\t'-s <query>' ou 'search <query>' : permet de chercher un client dans le CRM\n" +
-                "\t\t'-sa' ou 'search-all' : permet de chercher tous les clients\n" +
-                "\t\t'-ss <query>' ou 'search-salesforce <query>' : cherche un client dans le CRM Salesforce\n" +
-                "\t\t'-si <query>' ou 'search-internal <query>' : cherche un client dans le CRM interne";
+                "\t\t'-s <query>' ou 'select <query>' : permet de chercher un client dans le CRM\n" +
+                "\t\t'-sa' ou 'select-all' : permet de chercher tous les clients\n" +
+                "\t\t'-ss <query>' ou 'select-salesforce <query>' : cherche un client dans le CRM Salesforce\n" +
+                "\t\t'-si <query>' ou 'select-internal <query>' : cherche un client dans le CRM interne";
     }
 
 }
