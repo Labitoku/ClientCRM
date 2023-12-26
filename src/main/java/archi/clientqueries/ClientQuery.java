@@ -8,21 +8,26 @@ public class ClientQuery
 {
     QueryType query;
     String queryContent;
-    TypeCRM crm;
 
     public ClientQuery(QueryType t, String qc)
     {
         query = t;
         queryContent = qc;
-        crm = TypeCRM.SALESFORCE;
     }
+
+    public String content() { return queryContent; }
 
 
     public void execute()
     {
-        HttpClientCRM http = new HttpClientCRM(crm.toString() + query.toString());
+        switch(query)
+        {
+            case SELECT_ALL:
+                HttpClientCRM.getInstance().getAllUsersInfo();
+                break;
+        }
         //ArrayList<String> clients = http.getUserInfo(queryContent);
-        ArrayList<String> clients = http.getAllUsersInfo();
+        //ArrayList<String> clients = http.getAllUsersInfo();
 
     }
 }

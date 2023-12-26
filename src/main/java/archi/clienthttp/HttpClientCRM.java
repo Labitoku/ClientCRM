@@ -21,13 +21,25 @@ public class HttpClientCRM {
 
     String urlCRM;
 
-    public HttpClientCRM(String url)
+    public static HttpClientCRM instance;
+
+    public static HttpClientCRM getInstance()
     {
-        urlCRM = url;
+        if(instance == null)
+        {
+            instance = new HttpClientCRM();
+        }
+        return instance;
+    }
+
+    private HttpClientCRM()
+    {
+        urlCRM = "http://localhost:8081/api/";
     }
 
     public ArrayList<String> getAllUsersInfo()
     {
+        String urlAllUsers = urlCRM + "allUsers";
         ArrayList<String> allUsers = new ArrayList<String>();
 
         // Créer un objet RestTemplate
@@ -44,7 +56,7 @@ public class HttpClientCRM {
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(urlCRM))
+                .uri(URI.create(urlAllUsers))
                 .GET()
                 .build();
 

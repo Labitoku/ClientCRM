@@ -7,10 +7,22 @@ public enum QueryType {
                     return "/";
                 }
             },
-    SELECT {
+    SELECT_ALL {
         @Override
         public String toString() {
-            return "api/salesforce/allUsers";
+            return "allUsers";
+        }
+    },
+    SELECT_BY_REVENUE {
+        @Override
+        public String toString() {
+            return "allUsers";
+        }
+    },
+    SELECT_BY_DATE {
+        @Override
+        public String toString() {
+            return "allUsers";
         }
     },
     ADD {

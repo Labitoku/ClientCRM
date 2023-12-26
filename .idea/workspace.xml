@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="553484d7-b765-4342-b00c-1eeb3cd2fb68" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/archi/clienthttp/HttpClientCRM.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/archi/clientqueries/ClientInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/archi/clientqueries/TypeCRM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/archi/leads/UserLeadDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientcommand/ClientCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clientcommand/ClientCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientcommand/ClientCommandPrompter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clientcommand/ClientCommandPrompter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientcrm/ClientCRM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clientcrm/ClientCRM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clienthttp/ClientHttp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clienthttp/HttpClientCRM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clienthttp/HttpClientCRM.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientqueries/ClientQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clientqueries/ClientQuery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientqueries/QueryType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clientqueries/QueryType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientqueries/TypeCRM.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -94,6 +91,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ClientCRM" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="archi.clientcrm.ClientCRM" />
+      <module name="ClientCRM.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="archi.clientcrm.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClientCrmApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ClientCRM.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="archi.clientcrm.ClientCrmApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ClientCrmApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="ClientCRM.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="archi.clientcrm.ClientCrmApplication" />
@@ -118,6 +135,13 @@
       <workItem from="1701254804274" duration="8621000" />
       <workItem from="1701339210780" duration="4822000" />
       <workItem from="1701349168581" duration="2248000" />
+      <workItem from="1702042489500" duration="5195000" />
+      <workItem from="1702361016187" duration="2720000" />
+      <workItem from="1702443080199" duration="2990000" />
+      <workItem from="1702892477533" duration="1478000" />
+      <workItem from="1702896678898" duration="3145000" />
+      <workItem from="1702963610102" duration="2450000" />
+      <workItem from="1703352950010" duration="1433000" />
     </task>
     <servers />
   </component>
@@ -126,5 +150,21 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/archi/clientqueries/ClientQuery.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="jdk.internal.net.http.HttpResponseImpl" memberName="body" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

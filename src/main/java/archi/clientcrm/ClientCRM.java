@@ -40,7 +40,12 @@ public class ClientCRM {
                     clientCommand = ClientCommand.QUIT;
                     break;
                 case "select":
-                    type = QueryType.SELECT;
+                    clientCommand = ClientCommand.SELECT_CLIENT;
+                    queryContent = strCommandSplit[1];
+                    if(queryContent.equals("all"))
+                        type = QueryType.SELECT_ALL;
+                    else
+                        type = QueryType.NONE;
                     break;
                 case "add":
                     type = QueryType.ADD;
