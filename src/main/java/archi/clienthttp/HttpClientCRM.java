@@ -1,7 +1,10 @@
 package archi.clienthttp;
 
+import archi.leads.UserLeadDto;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.catalina.User;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -13,6 +16,10 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.ArrayList;
@@ -37,22 +44,10 @@ public class HttpClientCRM {
         urlCRM = "http://localhost:8081/api/";
     }
 
-    public ArrayList<String> getAllUsersInfo()
+    public ArrayList<UserLeadDto> getAllUsersInfo()
     {
+        ArrayList<UserLeadDto> users = new ArrayList<UserLeadDto>();
         String urlAllUsers = urlCRM + "allUsers";
-        ArrayList<String> allUsers = new ArrayList<String>();
-
-        // Créer un objet RestTemplate
-        RestTemplate restTemplate = new RestTemplate();
-
-        // Créer les entêtes de la requête
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-
-        // Créer les paramètres de la requête
-        String jsonInputString = "";
-        HttpEntity<String> requestEntity = new HttpEntity<>(jsonInputString, headers);
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -63,76 +58,137 @@ public class HttpClientCRM {
         HttpResponse<String> response;
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println("All Users : " + response.body());
 
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(response.body());
-            Object jsonObject = objectMapper.readValue(response.body(), Object.class);
 
-            String formattedJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
+            if(jsonNode.isArray()) {
+                for(JsonNode node : jsonNode)
+                {
+                    UserLeadDto uld = new UserLeadDto(node);
+                    users.add(uld);
 
-            System.out.println("JSON structuré : ");
-            System.out.println(formattedJson);
+                }
+            }
+
+            //Object jsonObject = objectMapper.readValue(response.body(), Object.class);
+            //String formattedJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
+            //System.out.println("JSON structure : ");
+            //System.out.println(formattedJson);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        // Envoyer la requête HTTP POST
-        /*ResponseEntity<String> responseEntity = restTemplate.exchange(
-                urlCRM,
-                HttpMethod.GET,
-                requestEntity,
-                String.class);*/
-
-        //String responseString = responseEntity.getBody();
-        //allUsers = parseUserInfo(responseString);
-
-        //allUsers.add(responseEntity.getBody());
-
-
-        return allUsers;
+        return users;
     }
 
-    public ArrayList<String> getUserInfo(String username) {
-        // Spécifier l'URL du serveur
+    public ArrayList<UserLeadDto> getUserInfoByRevenue(double lowRevenue, double highRevenue, String state) throws JsonProcessingException
+    {
+        ArrayList<UserLeadDto> users = new ArrayList<UserLeadDto>();
+        String urlGetLeadsByRevenue = urlCRM + "getLeads";
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode queryJsonNode = objectMapper.createObjectNode()
+                .put("lowAnnualRevenue", ""+lowRevenue)
+                .put("highAnnualRevenue", ""+highRevenue)
+                .put("state", state);
+
+        // Convertissez l'objet JsonNode en une chaîne JSON
+        String requestBody = objectMapper.writeValueAsString(queryJsonNode);
 
 
-        // Créer un objet RestTemplate
-        RestTemplate restTemplate = new RestTemplate();
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(urlGetLeadsByRevenue))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody, StandardCharsets.UTF_8))
+                .build();
 
-        // Créer les entêtes de la requête
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        // Créer les paramètres de la requête
-        String jsonInputString = "";
-        HttpEntity<String> requestEntity = new HttpEntity<>(jsonInputString, headers);
+            JsonNode jsonNode = objectMapper.readTree(response.body());
 
-        // Envoyer la requête HTTP POST
-        ResponseEntity<String> responseEntity = restTemplate.exchange(
-                urlCRM,
-                HttpMethod.GET,
-                requestEntity,
-                String.class);
+            if(jsonNode.isArray()) {
+                for(JsonNode node : jsonNode)
+                {
+                    UserLeadDto uld = new UserLeadDto(node);
+                    users.add(uld);
 
-        // Obtenir la réponse
-        String responseString = responseEntity.getBody();
+                }
+            }
 
-        // Analyser la réponse JSON et extraire les informations sur l'utilisateur
-        ArrayList<String> userInfo = parseUserInfo(responseString);
+            //Object jsonObject = objectMapper.readValue(response.body(), Object.class);
+            //String formattedJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
+            //System.out.println("JSON structure : ");
+            //System.out.println(formattedJson);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        return userInfo;
+        return users;
     }
 
-    private static ArrayList<String> parseUserInfo(String responseString) {
-        // Implémenter la logique pour extraire les informations sur l'utilisateur
-        // à partir de la chaîne de caractères JSON de la réponse.
-        // Vous pouvez utiliser une bibliothèque JSON comme Jackson ou Gson pour simplifier cette tâche.
+    public ArrayList<UserLeadDto> getUserInfoByDate(String startDate, String endDate) throws JsonProcessingException
+    {
+        ArrayList<UserLeadDto> users = new ArrayList<UserLeadDto>();
+        String urlGetLeadsByRevenue = urlCRM + "getLeadsByDate";
 
-        // Exemple simple :
-        ArrayList<String> userInfo = new ArrayList<String>(Arrays.asList("Nom: John Doe", "Pays: France", "Ville: Paris"));
 
-        return userInfo;
+        String formattedStartDate = convertToISO8601(startDate) + "T00:00:00.000+0000";
+        String formattedEndDate = convertToISO8601(endDate) + "T00:00:00.000+0000";
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode queryJsonNode = objectMapper.createObjectNode()
+                .put("startDate", formattedStartDate)
+                .put("endDate", formattedEndDate);
+
+        // Convertissez l'objet JsonNode en une chaîne JSON
+        String requestBody = objectMapper.writeValueAsString(queryJsonNode);
+
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(urlGetLeadsByRevenue))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody, StandardCharsets.UTF_8))
+                .build();
+
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            JsonNode jsonNode = objectMapper.readTree(response.body());
+
+            if(jsonNode.isArray()) {
+                for(JsonNode node : jsonNode)
+                {
+                    UserLeadDto uld = new UserLeadDto(node);
+                    users.add(uld);
+                }
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return users;
     }
+
+    // Méthode pour convertir la date au format ISO 8601
+    private static String convertToISO8601(String inputDate) {
+        // Définir le format de la date en entrée
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        // Parser la date en tant qu'objet LocalDate
+        LocalDate localDate = LocalDate.parse(inputDate, inputFormatter);
+
+        // Définir le format de sortie (ISO 8601)
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ISO_DATE;
+
+        // Formater la date en tant que chaîne ISO 8601
+        return localDate.format(outputFormatter);
+    }
+
 }

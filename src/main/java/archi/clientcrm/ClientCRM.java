@@ -1,5 +1,4 @@
 package archi.clientcrm;
-import archi.clientcommand.ClientCommand;
 import archi.clientcommand.ClientCommandPrompter;
 import archi.clientqueries.ClientQuery;
 import archi.clientqueries.QueryType;
@@ -11,21 +10,20 @@ public class ClientCRM {
     public static void main(String[] args) {
         String strCommand = "";
 
-        ClientCommand clientCommand = ClientCommand.NONE;
         String query = "";
 
         Scanner clientScanner = new Scanner(System.in);
         System.out.println("Bienvenue dans ClientCRMinho. Veuillez entrer une requête pour le CRM. Pour accéder à l'aide, tapez '-h', ou 'help'");
 
         HttpClientCRM http;
+        ClientQuery cq = new ClientQuery(QueryType.NONE, "");
 
-        while(clientCommand != ClientCommand.QUIT)
+        while(cq.getQueryType() != QueryType.QUIT)
         {
             System.out.print("ClientCRM > ");
             strCommand = clientScanner.nextLine();
 
             String[] strCommandSplit = strCommand.split(" ");
-            ClientQuery cq = null;
 
             QueryType type = QueryType.NONE;
             String queryContent = "";
@@ -33,20 +31,60 @@ public class ClientCRM {
             {
                 case "help":
                 case "-h":
-                    clientCommand = ClientCommand.HELP;
+                    type = QueryType.HELP;
                     break;
+
                 case "quit":
                 case "-q":
-                    clientCommand = ClientCommand.QUIT;
+                    type = QueryType.QUIT;
                     break;
+
                 case "select":
-                    clientCommand = ClientCommand.SELECT_CLIENT;
-                    queryContent = strCommandSplit[1];
-                    if(queryContent.equals("all"))
-                        type = QueryType.SELECT_ALL;
-                    else
+                    try {
+                        queryContent = strCommandSplit[1];
+                        if (queryContent.equals("all"))
+                        {
+                            type = QueryType.SELECT_ALL;
+                        }
+                        else
+                        {
+                            type = QueryType.NONE;
+                        }
+                    }
+                    catch(Exception e)
+                    {
                         type = QueryType.NONE;
+                    }
+
                     break;
+
+                case"selectrev":
+                    try {
+                        if (!Double.valueOf(strCommandSplit[1]).isNaN() && !Double.valueOf(strCommandSplit[2]).isNaN() && strCommandSplit.length == 4) {
+                            queryContent = strCommandSplit[1] + " " + strCommandSplit[2] + " " + strCommandSplit[3];
+                            type = QueryType.SELECT_BY_REVENUE;
+                        }
+                    }
+                    catch(Exception e)
+                    {
+                        type = QueryType.NONE;
+                    }
+                    break;
+
+                case"selectdate":
+                    try {
+                        if (strCommandSplit.length == 3)
+                        {
+                            queryContent = strCommandSplit[1] + " " + strCommandSplit[2];
+                            type = QueryType.SELECT_BY_DATE;
+                        }
+                    }
+                    catch(Exception e)
+                    {
+                        type = QueryType.NONE;
+                    }
+                    break;
+
                 case "add":
                     type = QueryType.ADD;
                     break;
@@ -57,10 +95,9 @@ public class ClientCRM {
             if(type != QueryType.NONE)
             {
                 cq = new ClientQuery(type, queryContent);
-                cq.execute();
             }
 
-            System.out.println(ClientCommandPrompter.getPrompt(clientCommand, cq));
+            System.out.println(ClientCommandPrompter.getPrompt(cq));
         }
     }
 }
