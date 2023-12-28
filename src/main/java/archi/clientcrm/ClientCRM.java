@@ -86,10 +86,25 @@ public class ClientCRM {
                     break;
 
                 case "add":
-                    type = QueryType.ADD;
+                    try
+                    {
+                        type = QueryType.ADD;
+                    }
+                    catch (Exception e)
+                    {
+                        type = QueryType.NONE;
+                    }
                     break;
+
                 case "delete":
-                    type = QueryType.DELETE;
+                    try {
+                        type = QueryType.DELETE;
+
+                    }
+                    catch(Exception e)
+                    {
+                        type = QueryType.NONE;
+                    }
                     break;
             }
             if(type != QueryType.NONE)

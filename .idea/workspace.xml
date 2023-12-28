@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="553484d7-b765-4342-b00c-1eeb3cd2fb68" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/archi/leads/GeographicPointDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientcommand/ClientCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientcommand/ClientCommandPrompter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clientcommand/ClientCommandPrompter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientcrm/ClientCRM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clientcrm/ClientCRM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clienthttp/HttpClientCRM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clienthttp/HttpClientCRM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientqueries/ClientQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clientqueries/ClientQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientqueries/QueryType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clientqueries/QueryType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/archi/leads/UserLeadDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/leads/UserLeadDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientqueries/ClientInfo.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,28 +44,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Gradle.ClientCRM [:ClientCRM.main()].executor": "Debug",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Gradle.ClientCRM [:ClientCRM.main()].executor&quot;: &quot;Debug&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\louis\Documents\DEV\Java\Architecture Distribuée\ClientCRM\src\main\java\archi\clientcrm" />
@@ -152,7 +146,8 @@
       <workItem from="1702896678898" duration="3145000" />
       <workItem from="1702963610102" duration="2450000" />
       <workItem from="1703352950010" duration="1433000" />
-      <workItem from="1703594648838" duration="21289000" />
+      <workItem from="1703594648838" duration="22069000" />
+      <workItem from="1703747152480" duration="965000" />
     </task>
     <servers />
   </component>
@@ -169,6 +164,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/archi/clienthttp/HttpClientCRM.java</url>
           <line>87</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/archi/clienthttp/HttpClientCRM.java</url>
+          <line>150</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
