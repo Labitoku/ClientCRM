@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="553484d7-b765-4342-b00c-1eeb3cd2fb68" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientcommand/ClientCommandPrompter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clientcommand/ClientCommandPrompter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientcrm/ClientCRM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clientcrm/ClientCRM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientqueries/ClientInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clienthttp/HttpClientCRM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clienthttp/HttpClientCRM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientqueries/ClientQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clientqueries/ClientQuery.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +149,8 @@
       <workItem from="1702963610102" duration="2450000" />
       <workItem from="1703352950010" duration="1433000" />
       <workItem from="1703594648838" duration="22069000" />
-      <workItem from="1703747152480" duration="965000" />
+      <workItem from="1703747152480" duration="966000" />
+      <workItem from="1703839751880" duration="6061000" />
     </task>
     <servers />
   </component>
@@ -167,8 +170,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/archi/clienthttp/HttpClientCRM.java</url>
-          <line>150</line>
-          <option name="timeStamp" value="11" />
+          <line>212</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/archi/clienthttp/HttpClientCRM.java</url>
+          <line>247</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/archi/clienthttp/HttpClientCRM.java</url>
+          <line>235</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

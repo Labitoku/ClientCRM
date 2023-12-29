@@ -191,4 +191,66 @@ public class HttpClientCRM {
         return localDate.format(outputFormatter);
     }
 
+    public UserLeadDto AddUser(String[] userInfos) throws JsonProcessingException {
+        String urlAddLead = urlCRM + "addLead";
+
+
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode queryJsonNode = objectMapper.createObjectNode()
+                .put("firstName", userInfos[0])
+                .put("lastName", userInfos[1])
+                .put("annualRevenue", Double.valueOf(userInfos[2]))
+                .put("phone", userInfos[3])
+                .put("street", userInfos[4])
+                .put("postalCode", userInfos[5])
+                .put("city", userInfos[6])
+                .put("country", userInfos[7])
+                .put("company", userInfos[8])
+                .put("state", userInfos[9]);
+
+        // Convertissez l'objet JsonNode en une chaîne JSON
+        String requestBody = objectMapper.writeValueAsString(queryJsonNode);
+
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(urlAddLead))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody, StandardCharsets.UTF_8))
+                .build();
+
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<UserLeadDto> users = getAllUsersInfo();
+        UserLeadDto user = null;
+        for(UserLeadDto uld : users)
+        {
+            if(
+                uld.getFirstName().equals(userInfos[0]) &&
+                uld.getLastName().equals(userInfos[1]) &&
+                uld.getAnnualRevenue() == Double.valueOf(userInfos[2]) &&
+                uld.getPhone().equals(userInfos[3]) &&
+                uld.getStreet().equals(userInfos[4]) &&
+                uld.getPostalCode().equals(userInfos[5]) &&
+                uld.getCity().equals(userInfos[6]) &&
+                uld.getCountry().equals(userInfos[7]) &&
+                uld.getCompany().equals(userInfos[8]) &&
+                uld.getState().equals(userInfos[9])
+            )
+            {
+                user = uld;
+                break;
+            }
+        }
+
+        return user;
+    }
+
 }

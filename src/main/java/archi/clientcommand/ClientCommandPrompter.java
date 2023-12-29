@@ -35,6 +35,11 @@ public class ClientCommandPrompter
             prompt = showSelectionPrompt(query);
         }
 
+        else if(type == QueryType.ADD)
+        {
+            prompt = addPrompt(query);
+        }
+
         else
         {
             prompt = defaultIncorrectCommandPrompt();
@@ -69,12 +74,28 @@ public class ClientCommandPrompter
     private static String showSelectionPrompt(ClientQuery cq)
     {
         ArrayList<UserLeadDto> leads = cq.execute();
-        String selection = "==============================\nCLIENT SELECTION\n==============================";
+        String selection = "==============================\nCLIENT SELECTION\n==============================\n";
         for(UserLeadDto uld : leads)
         {
             selection += "------------------------------\n" + uld.toString() + "\n------------------------------";
         }
         return selection;
+    }
+
+    private static String addPrompt(ClientQuery cq)
+    {
+        ArrayList<UserLeadDto> leads = cq.execute();
+        String addPrompt = "==============================\nCLIENT INSERTION\n==============================\n";
+        if(leads.get(0) == null)
+        {
+            addPrompt += "Something went wrong while inserting the lead...";
+        }
+        else
+        {
+            addPrompt += "------------------------------\n" + leads.get(0).toString() + "\n------------------------------";
+        }
+
+        return addPrompt;
     }
 
 }

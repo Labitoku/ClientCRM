@@ -11,16 +11,16 @@ import java.util.ArrayList;
 public class ClientQuery
 {
     QueryType queryType;
-    String queryContent;
+    String[] queryContent;
 
-    public ClientQuery(QueryType t, String qc)
+    public ClientQuery(QueryType t, String[] qc)
     {
         queryType = t;
         queryContent = qc;
     }
 
-    public String getQueryContent() { return queryContent; }
-    public void setQueryContent(String s) { queryContent = s; }
+    public String[] getQueryContent() { return queryContent; }
+    public void setQueryContent(String[] s) { queryContent = s; }
 
     public QueryType getQueryType() { return queryType; }
     public void setQueryType(QueryType qt) { queryType = qt; }
@@ -28,7 +28,6 @@ public class ClientQuery
     public ArrayList<UserLeadDto> execute()
     {
         ArrayList<UserLeadDto> users = new ArrayList<UserLeadDto>();
-        String[] queryParts;
         switch(queryType)
         {
             case SELECT_ALL:
@@ -36,10 +35,9 @@ public class ClientQuery
                 break;
 
             case SELECT_BY_REVENUE:
-                queryParts = queryContent.split(" ");
-                double lowRevenue = Double.valueOf(queryParts[0]);
-                double highRevenue = Double.valueOf(queryParts[1]);
-                String state = queryParts[2];
+                double lowRevenue = Double.valueOf(queryContent[0]);
+                double highRevenue = Double.valueOf(queryContent[1]);
+                String state = queryContent[2];
                 try {
                     users = HttpClientCRM.getInstance().getUserInfoByRevenue(lowRevenue, highRevenue, state);
                 }
@@ -50,9 +48,8 @@ public class ClientQuery
                 break;
 
             case SELECT_BY_DATE:
-                queryParts = queryContent.split(" ");
-                String startDate = queryParts[0];
-                String endDate = queryParts[1];
+                String startDate = queryContent[0];
+                String endDate = queryContent[1];
                 try {
                     users = HttpClientCRM.getInstance().getUserInfoByDate(startDate, endDate);
                 }
@@ -60,6 +57,21 @@ public class ClientQuery
                 {
                     throw new RuntimeException(e);
                 }
+                break;
+
+
+            case ADD:
+                try {
+                    users.add(HttpClientCRM.getInstance().AddUser(queryContent));
+                }
+                catch (JsonProcessingException e)
+                {
+                    throw new RuntimeException(e);
+                }
+                break;
+
+            case DELETE:
+                System.out.println("Marche pas sur Salesforce mais lets go");
                 break;
         }
 

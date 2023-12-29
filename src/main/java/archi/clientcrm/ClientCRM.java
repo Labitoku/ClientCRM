@@ -10,13 +10,11 @@ public class ClientCRM {
     public static void main(String[] args) {
         String strCommand = "";
 
-        String query = "";
-
         Scanner clientScanner = new Scanner(System.in);
         System.out.println("Bienvenue dans ClientCRMinho. Veuillez entrer une requête pour le CRM. Pour accéder à l'aide, tapez '-h', ou 'help'");
 
-        HttpClientCRM http;
-        ClientQuery cq = new ClientQuery(QueryType.NONE, "");
+        String[] queryContent = new String[1];
+        ClientQuery cq = new ClientQuery(QueryType.NONE, queryContent);
 
         while(cq.getQueryType() != QueryType.QUIT)
         {
@@ -26,7 +24,6 @@ public class ClientCRM {
             String[] strCommandSplit = strCommand.split(" ");
 
             QueryType type = QueryType.NONE;
-            String queryContent = "";
             switch(strCommandSplit[0])
             {
                 case "help":
@@ -41,8 +38,8 @@ public class ClientCRM {
 
                 case "select":
                     try {
-                        queryContent = strCommandSplit[1];
-                        if (queryContent.equals("all"))
+                        String firstQueryArg = strCommandSplit[1];
+                        if (firstQueryArg.equals("all"))
                         {
                             type = QueryType.SELECT_ALL;
                         }
@@ -61,7 +58,7 @@ public class ClientCRM {
                 case"selectrev":
                     try {
                         if (!Double.valueOf(strCommandSplit[1]).isNaN() && !Double.valueOf(strCommandSplit[2]).isNaN() && strCommandSplit.length == 4) {
-                            queryContent = strCommandSplit[1] + " " + strCommandSplit[2] + " " + strCommandSplit[3];
+                            queryContent = new String[]{ strCommandSplit[1], strCommandSplit[2], strCommandSplit[3] };
                             type = QueryType.SELECT_BY_REVENUE;
                         }
                     }
@@ -75,7 +72,7 @@ public class ClientCRM {
                     try {
                         if (strCommandSplit.length == 3)
                         {
-                            queryContent = strCommandSplit[1] + " " + strCommandSplit[2];
+                            queryContent = new String[] { strCommandSplit[1], strCommandSplit[2] };
                             type = QueryType.SELECT_BY_DATE;
                         }
                     }
@@ -88,6 +85,49 @@ public class ClientCRM {
                 case "add":
                     try
                     {
+                        queryContent = new String[10];
+                        System.out.println("Lets add the client step by step !\n");
+
+                        System.out.print("First Name > ");
+                        String firstName = clientScanner.nextLine();
+                        queryContent[0] = firstName;
+
+                        System.out.print("Last Name > ");
+                        String lastName = clientScanner.nextLine();
+                        queryContent[1] = lastName;
+
+                        System.out.print("Annual Revenue > ");
+                        String annualRevenue = clientScanner.nextLine();
+                        queryContent[2] = annualRevenue;
+
+                        System.out.print("Phone > ");
+                        String phone = clientScanner.nextLine();
+                        queryContent[3] = phone;
+
+                        System.out.print("Street > ");
+                        String street = clientScanner.nextLine();
+                        queryContent[4] = street;
+
+                        System.out.print("Postal Code > ");
+                        String postalCode = clientScanner.nextLine();
+                        queryContent[5] = postalCode;
+
+                        System.out.print("City > ");
+                        String city = clientScanner.nextLine();
+                        queryContent[6] = city;
+
+                        System.out.print("Country > ");
+                        String country = clientScanner.nextLine();
+                        queryContent[7] = country;
+
+                        System.out.print("Company > ");
+                        String company = clientScanner.nextLine();
+                        queryContent[8] = company;
+
+                        System.out.print("State > ");
+                        String state = clientScanner.nextLine();
+                        queryContent[9] = state;
+
                         type = QueryType.ADD;
                     }
                     catch (Exception e)
