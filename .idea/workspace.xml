@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="553484d7-b765-4342-b00c-1eeb3cd2fb68" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientcommand/ClientCommandPrompter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clientcommand/ClientCommandPrompter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientcrm/ClientCRM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clientcrm/ClientCRM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clienthttp/HttpClientCRM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clienthttp/HttpClientCRM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/archi/clientqueries/ClientQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/archi/clientqueries/ClientQuery.java" afterDir="false" />
-    </list>
+    <list default="true" id="553484d7-b765-4342-b00c-1eeb3cd2fb68" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -150,7 +144,7 @@
       <workItem from="1703352950010" duration="1433000" />
       <workItem from="1703594648838" duration="22069000" />
       <workItem from="1703747152480" duration="966000" />
-      <workItem from="1703839751880" duration="6061000" />
+      <workItem from="1703839751880" duration="6554000" />
     </task>
     <servers />
   </component>
