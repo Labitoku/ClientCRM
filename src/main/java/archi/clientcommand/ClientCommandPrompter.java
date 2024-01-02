@@ -60,10 +60,12 @@ public class ClientCommandPrompter
                 "des requêtes pour accéder aux clients existant dans le CRM." +
                 "\t\t'-h' ou 'help' : permet d'afficher ce prompt.\n" +
                 "\t\t'-q' ou 'quit' : permet de quitter ClientCRMinho\n" +
-                "\t\t'-s <query>' ou 'select <query>' : permet de chercher un client dans le CRM\n" +
-                "\t\t'-sa' ou 'select-all' : permet de chercher tous les clients\n" +
-                "\t\t'-ss <query>' ou 'select-salesforce <query>' : cherche un client dans le CRM Salesforce\n" +
-                "\t\t'-si <query>' ou 'select-internal <query>' : cherche un client dans le CRM interne";
+                "\t\t'select all' : permet de chercher tous les clients dans le CRM\n" +
+                "\t\t'selectrev lowrev highrev state' : permet de chercher tous les clients dans le CRM ayant des revenus\n" +
+                "\t\tsupérieurs à lowrev et inférieurs à highrev, se situant dans l'état / province state\n" +
+                "\t\t'selectdate startdate enddate' : permet de chercher tous les clients dans le CRM ayant été ajoutés\n" +
+                "\t\taprès startdate et avant enddate. \n" +
+                "\t\tNOTE : Le format de date a utiliser est le suivant : yyyy-MM-dd\n";
     }
 
     private static String quitPrompt()
