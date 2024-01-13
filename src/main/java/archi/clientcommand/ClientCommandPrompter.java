@@ -39,6 +39,11 @@ public class ClientCommandPrompter
             prompt = addPrompt(query);
         }
 
+        else if(type == QueryType.MERGE)
+        {
+            prompt = mergePrompt(query);
+        }
+
         else
         {
             prompt = defaultIncorrectCommandPrompt();
@@ -64,6 +69,7 @@ public class ClientCommandPrompter
                 "\t\tsupérieurs à lowrev et inférieurs à highrev, se situant dans l'état / province state\n" +
                 "\t\t'selectdate startdate enddate' : permet de chercher tous les clients dans le CRM ayant été ajoutés\n" +
                 "\t\taprès startdate et avant enddate. \n" +
+                "\t\t'merge' : permet d'ajouter les leads de Salesforce dans le CRM interne" +
                 "\t\tNOTE : Le format de date a utiliser est le suivant : yyyy-MM-dd\n";
     }
 
@@ -87,6 +93,22 @@ public class ClientCommandPrompter
     {
         ArrayList<UserLeadDto> leads = cq.execute();
         String addPrompt = "==============================\nCLIENT INSERTION\n==============================\n";
+        if(leads.get(0) == null)
+        {
+            addPrompt += "Something went wrong while inserting the lead...";
+        }
+        else
+        {
+            addPrompt += "------------------------------\n" + leads.get(0).toString() + "\n------------------------------";
+        }
+
+        return addPrompt;
+    }
+
+    private static String mergePrompt(ClientQuery cq)
+    {
+        ArrayList<UserLeadDto> leads = cq.execute();
+        String addPrompt = "==============================\nCLIENT MERGE\n==============================\n";
         if(leads.get(0) == null)
         {
             addPrompt += "Something went wrong while inserting the lead...";
