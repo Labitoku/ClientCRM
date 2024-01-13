@@ -73,6 +73,16 @@ public class ClientQuery
             case DELETE:
                 System.out.println("Marche pas sur Salesforce mais lets go");
                 break;
+
+            case MERGE:
+                try {
+                    users = HttpClientCRM.getInstance().mergeUsers();
+                }
+                catch (Exception e)
+                {
+                    throw new RuntimeException(e);
+                }
+                break;
         }
 
         return users;

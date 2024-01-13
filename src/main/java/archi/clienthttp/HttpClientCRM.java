@@ -253,4 +253,42 @@ public class HttpClientCRM {
         return user;
     }
 
+    public ArrayList<UserLeadDto> mergeUsers()
+    {
+        String urlMerge = urlCRM + "merge";
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(urlMerge))
+                .GET()
+                .build();
+
+        HttpResponse<String> response;
+        try
+        {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<UserLeadDto> users = new ArrayList<UserLeadDto>();
+        for(UserLeadDto user : getAllUsersInfo())
+        {
+            boolean ajout = true;
+            for(UserLeadDto registeredUser : users)
+            {
+                if(registeredUser.equals(user))
+                {
+                    ajout = false;
+                    break;
+                }
+            }
+            if(ajout)
+            {
+                users.add(user);
+            }
+        }
+        return users;
+    }
+
 }

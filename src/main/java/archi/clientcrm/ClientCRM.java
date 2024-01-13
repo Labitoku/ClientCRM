@@ -146,6 +146,8 @@ public class ClientCRM {
                         type = QueryType.NONE;
                     }
                     break;
+                case "merge":
+                    type = QueryType.MERGE;
             }
             if(type != QueryType.NONE)
             {

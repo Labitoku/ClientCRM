@@ -176,6 +176,20 @@ public class UserLeadDto
         this.geographicPointDto = geographicPointDto;
     }
 
+    public boolean equals(UserLeadDto uld)
+    {
+        return this.getFirstName().equals(uld.getFirstName())
+                && this.getLastName().equals(uld.getLastName())
+                && this.getAnnualRevenue() == uld.getAnnualRevenue()
+                && this.getPhone().equals(uld.getPhone())
+                && this.getStreet().equals(uld.getStreet())
+                && this.getPostalCode().equals(uld.getPostalCode())
+                && this.getCity().equals(uld.getCity())
+                && this.getCountry().equals(uld.getCountry())
+                && this.getCompany().equals(uld.getCompany())
+                && this.getState().equals(uld.getState());
+    }
+
     @Override
     public String toString()
     {

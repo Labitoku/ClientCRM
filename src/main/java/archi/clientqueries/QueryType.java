@@ -9,5 +9,6 @@ public enum QueryType {
     SELECT_BY_REVENUE,
     SELECT_BY_DATE,
     ADD,
-    DELETE
+    DELETE,
+    MERGE
 }

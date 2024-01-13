@@ -1,6 +1,5 @@
 package archi.clientcommand;
 
-import archi.clienthttp.HttpClientCRM;
 import archi.clientqueries.ClientQuery;
 import archi.clientqueries.QueryType;
 import archi.leads.UserLeadDto;
@@ -32,7 +31,7 @@ public class ClientCommandPrompter
 
         else if(type == QueryType.SELECT_ALL || type == QueryType.SELECT_BY_REVENUE || type == QueryType.SELECT_BY_DATE)
         {
-            prompt = showSelectionPrompt(query);
+            prompt = selectionPrompt(query);
         }
 
         else if(type == QueryType.ADD)
@@ -73,7 +72,7 @@ public class ClientCommandPrompter
         return "Merci d'avoir utilisé ClientCRMinho, à bientôt !";
     }
 
-    private static String showSelectionPrompt(ClientQuery cq)
+    private static String selectionPrompt(ClientQuery cq)
     {
         ArrayList<UserLeadDto> leads = cq.execute();
         String selection = "==============================\nCLIENT SELECTION\n==============================\n";
